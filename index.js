@@ -4,14 +4,18 @@ const mongoose = require("mongoose");
 const app = express();
 const path = require('path')
 require('dotenv').config();
-const path = require("path");
+const path = require("path")
+
 
 app.use(cors());
 app.use(express.json());
 
 
-app.use(require('./routes'))
-app.use('/images', express.static(path.resolve(__dirname + '/images')));
+app.use('/images', express.static(path.resolve(__dirname, 'images')));
+
+app.use(cors());
+app.use(express.json());
+app.use(require("./routes"));
 
 
 mongoose.connect(process.env.MONGO_SERVER, {
