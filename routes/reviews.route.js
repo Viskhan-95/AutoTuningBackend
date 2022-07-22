@@ -1,11 +1,11 @@
-const { Router } = require("express")
-const { reviewController } = require("../controllers/reviews.controller")
+const { Router } = require("express");
+const { reviewController } = require("../controllers/reviews.controller");
 
-const router = Router()
+const router = Router();
 
-router.post('/reviews', reviewController.postReview)
-router.patch('/reviews:/id', reviewController.patchReview)
-router.patch('/reviews:/id', reviewController.delReview)
-router.get('/reviews', reviewController.get)
+router.get('/reviews', reviewController.getReview);
+router.post('/reviews', reviewController.postReview);
+router.patch('/reviews:/id', reviewController.patchReview);
+router.delete('/reviews:/id', reviewController.delReview);
 
-module.exports = router
+module.exports = router;
