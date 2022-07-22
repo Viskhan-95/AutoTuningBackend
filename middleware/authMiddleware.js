@@ -1,25 +1,23 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
 
 module.exports = async (req, res, next) => {
-    const { authorization } = req.headers;
+    const { authorization } = req.headers
 
-    if (!authorization) {
-        return res.status(401).json("Пользователь не авторизован");
+    if(!authorization){
+        return res.status(401).json({error: 'Нет доступа (no authorization header)'})
     }
+    
+    const [type, token] = authorization.split(' ')
 
-    const [type, token] = authorization.split(' ');
-
-    if (type !== 'Bearer') {
-        return res.status(401).json('Неверный тип токена')
+    if(type !== 'Bearer'){
+        return res.json(401).json({error: 'Неверный тип токена'})
     }
-
     try {
-        req.user = jwt.verify(token, process.env.SECRET_JWT_KEY);
-        next();
+        req.user = await jwt.verify(token, process.env.SECRET_JWT_KEY)
 
-    } catch (err) {
-        return res.status(401).json({
-            error: "Ошибка авторизации: " + err.toString()
-        });
+        next()
+    } catch (error) {
+        return res.status(401).json({error: 'Ошибка авторизации: ' + error.toString()})
     }
+
 }
