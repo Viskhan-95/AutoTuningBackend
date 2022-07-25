@@ -5,6 +5,10 @@ const servicesSchema = mongoose.Schema({
   title: String,
   text: String,
   class: String,
+  time: {
+    type: Number,
+    default: 1,
+  }
 });
 
 const Services = mongoose.model("Services", servicesSchema);
