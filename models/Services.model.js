@@ -4,6 +4,7 @@ const servicesSchema = mongoose.Schema({
   img: String,
   title: String,
   text: String,
+  class: String,
 });
 
 const Services = mongoose.model("Services", servicesSchema);
