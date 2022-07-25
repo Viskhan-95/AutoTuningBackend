@@ -15,6 +15,9 @@ module.exports.servicesController = {
       const services = await Services.create({
         img: req.body.img,
         title: req.body.title,
+
+        text: req.body.text,
+        class: req.body.text
       });
       res.json(services);
     } catch (e) {
@@ -27,6 +30,8 @@ module.exports.servicesController = {
       const services = await Services.findByIdAndUpdate(req.params.id, {
         img: req.body.path,
         title: req.body.title,
+        text: req.body.text,
+        class: req.body.text
       });
       res.json(services);
     } catch (e) {
