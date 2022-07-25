@@ -4,6 +4,10 @@ const servicesSchema = mongoose.Schema({
   img: String,
   title: String,
   text: String,
+  time: {
+    type: Number,
+    default: 1,
+  }
 });
 
 const Services = mongoose.model("Services", servicesSchema);
