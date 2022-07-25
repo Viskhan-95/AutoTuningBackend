@@ -13,8 +13,9 @@ module.exports.servicesController = {
   createServices: async (req, res) => {
     try {
       const services = await Services.create({
-        img: req.file.path,
+        img: req.body.img,
         title: req.body.title,
+
         text: req.body.text,
         class: req.body.text
       });
@@ -27,7 +28,7 @@ module.exports.servicesController = {
   updateServices: async (req, res) => {
     try {
       const services = await Services.findByIdAndUpdate(req.params.id, {
-        img: req.file.path,
+        img: req.body.path,
         title: req.body.title,
         text: req.body.text,
         class: req.body.text

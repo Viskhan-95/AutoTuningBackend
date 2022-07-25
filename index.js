@@ -8,7 +8,8 @@ const path = require("path")
 app.use(cors());
 app.use(express.json());
 
-app.use('/images', express.static(path.resolve(__dirname, 'images')));
+app.use(express.static('images'));
+app.use('/services', express.static(__dirname + '/services'));
 
 app.use(cors());
 app.use(express.json());
