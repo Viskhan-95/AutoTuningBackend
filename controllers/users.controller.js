@@ -40,7 +40,7 @@ module.exports.userController = {
             expiresIn: '24h'
         })
 
-        res.json({ token, user: payload.id, name: payload.login, role: payload.role })
+        res.json({ token, role:payload.role })
 
     },
 
