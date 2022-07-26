@@ -15,9 +15,8 @@ module.exports.servicesController = {
       const services = await Services.create({
         img: req.body.img,
         title: req.body.title,
-
         text: req.body.text,
-        class: req.body.text
+        class: req.body.class
       });
       res.json(services);
     } catch (e) {
