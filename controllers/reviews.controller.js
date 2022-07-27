@@ -40,7 +40,7 @@ module.exports.reviewController = {
     },
     getReview: async (req, res) =>{
         try {
-            const data = await Review.find().populate(user)
+            const data = await Review.find()
             return res.json(data)
         } catch (error) {
             res.json({ error: error.message });
