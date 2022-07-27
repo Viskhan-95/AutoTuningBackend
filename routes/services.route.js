@@ -11,4 +11,4 @@ router.post("/services", authMiddleware, fileMiddleware.single("images"), servic
 router.patch("/services/:id", authMiddleware, servicesController.updateServices);
 router.delete("/services/:id", authMiddleware, servicesController.deleteServices);
 
-module.exports = router
+module.exports = router;
