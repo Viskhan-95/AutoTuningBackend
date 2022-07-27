@@ -5,8 +5,9 @@ module.exports.reviewController = {
         try {
             const data = await Review.create({
                 user: req.user.id,
-                text: req.body.text,
-                rating: req.body.rating
+                rating: req.body.rating,
+                plus: req.body.plus,
+                minus: req.body.minus,
             })
             res.json(data)
         } catch (error) {
@@ -16,8 +17,9 @@ module.exports.reviewController = {
     patchReview: async (req, res) =>{
         try {
             const data = await Review.findByIdAndUpdate(req.params.id, {
-                text: req.body.text,
-                rating: req.body.rating
+                rating: req.body.rating,
+                plus: req.body.plus,
+                minus: req.body.minus,
             }, {new: true})
             res.json( data)
         } catch (error) {
@@ -38,10 +40,10 @@ module.exports.reviewController = {
     },
     getReview: async (req, res) =>{
         try {
-            const data = await Review.find()
+            const data = await Review.find().populate(user)
             return res.json(data)
         } catch (error) {
-            res.json({ error: err.message });
+            res.json({ error: error.message });
         }
     }
 }
