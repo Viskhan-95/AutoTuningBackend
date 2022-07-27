@@ -5,8 +5,13 @@ const reviewSchema = mongoose.Schema({
         ref: "User",
         type: mongoose.SchemaTypes.ObjectId
     },
-    text: String,
-    rating: Number
+    data: {
+        type: Date,
+        default: Date.now,
+    },
+    rating: Number,
+    plus: String,
+    minus: String,
 });
 
 const Review = mongoose.model("Review", reviewSchema);
