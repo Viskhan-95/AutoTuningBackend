@@ -46,4 +46,12 @@ module.exports.servicesController = {
       res.json({ error: e.message });
     }
   },
+  getServicesById: async (req, res) => {
+    try {
+        const servis = await Services.find({services: req.params.id})
+        res.json(servis)
+    } catch (error) {
+        return res.status(401).json(error.toString())
+    }
+},
 };
