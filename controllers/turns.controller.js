@@ -15,5 +15,14 @@ module.exports.turnsController = {
         } catch (error) {
             return res.status(401).json(error.toString())
         }
+    },
+    getTurn: async (req, res) => {
+        const {id} = req.params
+        try {
+            const turns = await Turn.find()
+            res.json(turns)
+        } catch (error) {
+            res.json(error)
+        }
     }
 }
