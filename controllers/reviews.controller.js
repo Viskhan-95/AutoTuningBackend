@@ -4,6 +4,7 @@ module.exports.reviewController = {
     postReview : async (req, res) => {
         try {
             const data = await Review.create({
+                servicesId: req.body.servicesId,
                 user: req.user.id,
                 rating: req.body.rating,
                 plus: req.body.plus,
@@ -40,7 +41,7 @@ module.exports.reviewController = {
     },
     getReview: async (req, res) =>{
         try {
-            const data = await Review.find()
+            const data = await Review.find({servicesId: req.params.id})
             return res.json(data)
         } catch (error) {
             res.json({ error: error.message });
