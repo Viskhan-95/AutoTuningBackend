@@ -4,9 +4,10 @@ const Turn = require("../models/Turn.model")
 module.exports.turnsController = {
     postTurns: async (req, res) => {
         try {
-            const { contacts, user, date } =req.body
+            const { contacts, user, date, service } = req.body
             const turn = await Turn.create({
                 contacts,
+                service,
                 user,
                 date
             })
