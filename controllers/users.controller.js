@@ -42,6 +42,7 @@ module.exports.userController = {
 
         res.json({ token, role: payload.role, user: payload.login, userId: candidate._id })
 
+
     },
 
     getUser: async (req, res) => {
