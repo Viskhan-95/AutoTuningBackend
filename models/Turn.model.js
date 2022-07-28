@@ -6,7 +6,13 @@ const turnSchema = mongoose.Schema({
         ref: "User",
         type: mongoose.SchemaTypes.ObjectId
     },
-    date: Date
+    date: {
+        type: String
+    },
+    service: {
+        ref: "Services",
+        type: mongoose.SchemaTypes.ObjectId
+    }
 })
 
 const Turn = mongoose.model("Turn", turnSchema);
