@@ -24,5 +24,16 @@ module.exports.turnsController = {
         } catch (error) {
             res.json(error)
         }
-    }
+    },
+    delTurn: async (req, res) =>{
+        const { id } = req.params
+        try {
+            const turn = await Turn.findById(id)
+                await turn.remove()
+                return res.json('Удалено')
+        } catch (error) {
+            return res.status(401).json('Ошибка: ' + error.toString())
+        }
+    },
+    
 }
