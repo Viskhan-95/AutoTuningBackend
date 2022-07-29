@@ -12,4 +12,4 @@ router.patch("/services/:id", authMiddleware, servicesController.updateServices)
 router.delete("/services/:id", authMiddleware, servicesController.deleteServices);
 router.get("/services/:id",servicesController.getServicesById)
 
-module.exports = router
+module.exports = router;

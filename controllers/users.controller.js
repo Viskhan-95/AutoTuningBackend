@@ -1,14 +1,15 @@
-const User = require('../models/User.model')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-require('dotenv').config()
+const User = require('../models/User.model');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const mailer = require('../mailer');
+require('dotenv').config();
 
 module.exports.userController = {
     postUser: async (req, res) => {
         try {
-            const { login, password, role } = req.body
+            const { email, login, password, role } = req.body
             const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS))
-            const user = await User.create({ login: login, password: hash, role })
+            const user = await User.create({ email, login, password: hash, role })
             res.json({ user, role })
         } catch (error) {
             return res.status(401).json({ error: 'Такой пользователь уже существует' })
@@ -40,9 +41,29 @@ module.exports.userController = {
             expiresIn: '24h'
         })
 
-        res.json({ token, role: payload.role, user: payload.login, userId: payload.id })
+        res.json({ token, role: payload.role, user: payload.login, userId: candidate._id })
+    },
 
+    getKey: async (req, res) => {
+        const keyRegistration = 100000 + Math.floor(Math.random() * 900000);
 
+        try {
+            const { email } = req.body;
+
+            const message = {
+                from: process.env.EMAIL,
+                to: email,
+                subject: "Подтверждение почты",
+                text: `Ваш код для подтверждения: ${keyRegistration}`
+            }
+
+            mailer(message);
+
+            res.json(keyRegistration);
+
+        } catch (err) {
+            res.json("Ошибка подтверждения " + err.toString());
+        }
     },
 
     getUser: async (req, res) => {
