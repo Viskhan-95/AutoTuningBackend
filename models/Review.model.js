@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const reviewSchema = mongoose.Schema({
+    servicesId: {
+        ref: "Services",
+        type: mongoose.SchemaTypes.ObjectId,
+    },
     user:{
         ref: "User",
         type: mongoose.SchemaTypes.ObjectId
