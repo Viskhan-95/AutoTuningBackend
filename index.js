@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static('images'));
-app.use('/services', express.static(__dirname + '/services'));
+app.use('/images', express.static(path.resolve(__dirname + '/services')));
 
 app.use(cors());
 app.use(express.json());
